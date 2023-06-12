@@ -1,0 +1,23 @@
+<br><br>
+<div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="page-header">Productos Destacados</h2>
+        <br><br>
+      </div>
+      <div class="col-md-3 col-6 product-block border" *ngFor="let producto of productos">
+        <a href="#"><img class="img-fluid img-portfolio img-hover mb-3" src="{{producto.imagen}}"
+            alt="{{producto.nombre}}"></a>
+        <div class="caption">
+          <h3><a href="#">{{producto.nombre}}</a></h3>
+          <div class="price-mob mb-2">
+            ${{producto.precio}}
+          </div>
+        </div>
+        <br><br>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>
