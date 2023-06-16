@@ -107,8 +107,8 @@ export class MainComponent {
 
   calcularTotalPrecio() {
     let total = this.compras.reduce((total, compra) => total + compra.precio, 0);
-    if (this.compras.length >= 2) {
-      total *= 0.8; // Aplicamos el descuento del 20%
+    if (this.compras.length >= 3) {
+      total *= 0.8;
     }
     this.totalPrecio = total;
   }
