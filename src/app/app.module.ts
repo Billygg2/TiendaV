@@ -7,6 +7,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { MainComponent } from './main/main.component';
 import { CarrouselComponent } from './carrousel/carrousel.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,11 +15,12 @@ import { CarrouselComponent } from './carrousel/carrousel.component';
     HeaderComponent,
     FooterComponent,
     MainComponent,
-    CarrouselComponent
+    CarrouselComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

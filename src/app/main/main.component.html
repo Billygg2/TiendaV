@@ -1,23 +1,149 @@
 <br><br>
-<div>
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <h2 class="page-header">Productos Destacados</h2>
-        <br><br>
-      </div>
-      <div class="col-md-3 col-6 product-block border" *ngFor="let producto of productos">
-        <a href="#"><img class="img-fluid img-portfolio img-hover mb-3" src="{{producto.imagen}}"
-            alt="{{producto.nombre}}"></a>
-        <div class="caption">
-          <h3><a href="#">{{producto.nombre}}</a></h3>
-          <div class="price-mob mb-2">
-            ${{producto.precio}}
-          </div>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="page-header" style="text-decoration: underline; text-decoration-color: rgb(15, 139, 139);">Productos
+        Destacados</h2>
+      <br><br>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col" *ngFor="let producto of productos">
+      <div class="card h-100 border rounded-3 shadow-left-bottom">
+        <img class="img-fluid img-portfolio img-hover mb-3" src="{{producto.imagen}}" alt="{{producto.nombre}}">
+        <div class="card-body">
+          <h5 class="card-title">{{producto.nombre}}</h5>
+          <p class="card-text">{{producto.descripcion}}</p>
+          <p class="card-text text-danger">${{producto.precio}}</p>
         </div>
-        <br><br>
+        <div class="d-flex justify-content-center">
+          <a class="btn btn-primary" (click)="agregarAlCarrito(producto)">Agregar Al carrito</a>
+        </div>
       </div>
     </div>
   </div>
 </div>
+<style>
+  .shadow-left-bottom {
+    box-shadow: -20px 20px 8px -8px rgba(0, 0, 0, 0.2);
+  }
+</style>
+
+<!-- Modal -->
+<div class="modal fade" id="Modalco" tabindex="-1" aria-labelledby="ModalcoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Compra Realizada</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Gracias por Preferirnos :)
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Carrito -->
+<div class="position-fixed top-50 end-0 translate-middle bottom-0">
+  <div class="dropdown">
+    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
+      style="background-color: rgba(15, 139, 139, 0.438);" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi-cart-fill"></i>
+    </button>
+    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+      <div class="px-2 py-3">
+        <h2 class="fw-bold text-uppercase mb-3">Carrito de compras</h2>
+        <table class="table table-borderless mb-3">
+          <thead class="border-bottom">
+            <tr class="text-muted">
+              <th>-</th>
+              <th>-</th>
+              <th>PRODUCTO</th>
+              <th>PRECIO</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let compra of compras; let i = index">
+              <td><img [src]="compra.imagen" height="50"></td>
+              <td>{{ compra.nombre }}</td>
+              <td>{{ compra.precio | currency }}</td>
+              <td><button class="btn btn-danger" (click)="eliminarDelCarrito(i)">X</button></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th class="text-end">Total:</th>
+              <th>Total: {{ totalPrecio | currency:'USD':'symbol' }}</th>
+              <th></th>
+            </tr>
+          </tfoot>
+        </table>
+        <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#Modalco">Realizar compra</button>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+<!-- Agregar -->
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="page-header" style="text-decoration: underline; text-decoration-color: rgb(15, 139, 139);">Agregar
+        Productos Nuevos</h2>
+      <br><br>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-4 mx-auto text-center">
+        <div class="card shadow-left-bottom">
+          <div class="card-body ">
+            <form (ngSubmit)="agregarProducto()">
+              <div class="mb-3">
+                <label for="id" class="form-label" style="color: #147EB1;">ID:*</label>
+                <input type="number" class="form-control" id="id" [(ngModel)]="nuevoProducto.id" name="id" required>
+              </div>
+              <div class="mb-3">
+                <label for="img" class="form-label" style="color: #147EB1;">Imagen URL:</label>
+                <input type="text" class="form-control" id="img" style="background-color: #D9D9D9;"
+                  [(ngModel)]="nuevoProducto.imagen" name="img" required>
+              </div>
+              <div class="mb-3">
+                <label for="nombre" class="form-label" style="color: #147EB1;">Nombre:*</label>
+                <input type="text" class="form-control" id="nombre" style="background-color: #D9D9D9;"
+                  [(ngModel)]="nuevoProducto.nombre" name="nombre" required>
+              </div>
+              <div class="mb-3">
+                <label for="descripcion" class="form-label" style="color: #147EB1;">Descripcion:</label>
+                <input type="text" class="form-control" id="descripcion" style="background-color: #D9D9D9;"
+                  [(ngModel)]="nuevoProducto.descripcion" name="descripcion" required>
+              </div>
+              <div class="mb-3">
+                <label for="precio" class="form-label" style="color: #147EB1;">Precio:*</label>
+                <input type="number" class="form-control" id="precio" style="background-color: #D9D9D9;"
+                  [(ngModel)]="nuevoProducto.precio" name="precio" required>
+              </div>
+
+              <button type="submit" class="btn btn-danger">Agregar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <br><br>
