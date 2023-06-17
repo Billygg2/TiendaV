@@ -44,6 +44,25 @@
   </div>
 </div>
 
+<!-- Modal de advertencia -->
+<div class="modal fade" id="Modalco1" tabindex="-1" aria-labelledby="Modalco1Label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="Modalco1Label">Confirmar compra</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Estás seguro de que quieres realizar la compra?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modalco">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Carrito -->
 <div class="position-fixed top-50 end-0 translate-middle bottom-0">
   <div class="dropstart">
@@ -81,8 +100,8 @@
             </tfoot>
           </table>
           <p id="mensaje-descuento">¡Obtén un 20% de descuento por la compra de 3 productos!</p>
-          <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#Modalco">Realizar
-            compra</button>
+          <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#Modalco1"
+            id="btnRealizarCompra">Realizar compra</button>
         </ng-container>
         <ng-template #noCompras>
           <p id="mensaje-no-productos">No hay productos en el carrito</p>

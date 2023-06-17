@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+
 interface Producto {
   id: number;
   nombre: string;
@@ -112,6 +113,5 @@ export class MainComponent {
     }
     this.totalPrecio = total;
   }
-
 
 }
