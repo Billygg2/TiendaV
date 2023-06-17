@@ -1,0 +1,58 @@
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="page-header" style="text-decoration: underline; text-decoration-color: rgb(15, 139, 139);">Agregar
+        Productos Nuevos</h2>
+      <br><br>
+    </div>
+  </div>
+  <!-- Agregar un comentario -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-4 mx-auto text-center">
+          <div class="card shadow-left-bottom">
+            <div class="card-body ">
+              <form (ngSubmit)="nuevoComentario()">
+                <div class="mb-3">
+                  <label for="nombre" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre"
+                    [(ngModel)]="nuevoComentario.nombre">
+                </div>
+                <div class="mb-3">
+                  <label for="comentario" class="form-label">Comentario</label>
+                  <input type="text" class="form-control" id="texto" name="texto" placeholder="Ingrese su Comentario"
+                  [(ngModel)]="nuevoComentario.texto">
+                </div>
+                <button class="btn btn-primary" (click)="agregarComentario()">Agregar comentario</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+<!-- Botones para cambiar color de fondo -->
+<div class="mb-3">
+  <button class="btn btn-primary mr-3" (click)="cambiarColorComentarios('bg-info')">Celeste</button>
+  <button class="btn btn-warning mx-5" (click)="cambiarColorComentarios('bg-warning')">Amarillo</button>
+</div>
+
+<!-- Lista de comentarios -->
+<div>
+  <div *ngIf="comentarios.length">
+    <div class="card mb-3" *ngFor="let comentario of comentarios" [ngClass]="comentario.colorClass" >
+      <div class="card-body">
+        <h5 class="card-title">{{ comentario.nombre }}</h5>
+        <p class="card-title">{{ comentario.texto }}</p>
+        <p class="card-text"><small class="text-muted">{{ comentario.fecha | date: 'dd/MM/yyyy HH:mm:ss' }}</small></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mensaje si no hay comentarios -->
+  <p *ngIf="!comentarios.length">No hay comentarios todavía.</p>
+</div>

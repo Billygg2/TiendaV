@@ -8,6 +8,9 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { MainComponent } from './main/main.component';
 import { CarrouselComponent } from './carrousel/carrousel.component';
 import { FormsModule } from '@angular/forms';
+import { ROUTES, RouterModule } from '@angular/router';
+import { ComentariosComponent } from './comentarios/comentarios.component';
+import { ImagenComponent } from './imagen/imagen.component';
 
 @NgModule({
   declarations: [
@@ -16,11 +19,13 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     MainComponent,
     CarrouselComponent,
+    ComentariosComponent,
+    ImagenComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
