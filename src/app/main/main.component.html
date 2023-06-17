@@ -25,11 +25,6 @@
     </div>
   </div>
 </div>
-<style>
-  .shadow-left-bottom {
-    box-shadow: -20px 20px 8px -8px rgba(0, 0, 0, 0.2);
-  }
-</style>
 
 <!-- Modal -->
 <div class="modal fade" id="Modalco" tabindex="-1" aria-labelledby="ModalcoLabel" aria-hidden="true">
@@ -59,32 +54,39 @@
     <div class="dropdown-menu dropstart-menu-end" aria-labelledby="dropdownMenuButton">
       <div class="px-2 py-3">
         <h2 class="fw-bold text-uppercase mb-3">Carrito de compras</h2>
-        <table class="table table-borderless mb-3">
-          <thead class="border-bottom">
-            <tr class="text-muted">
-              <th>-</th>
-              <th>PRODUCTO</th>
-              <th>PRECIO</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let compra of compras; let i = index">
-              <td><img [src]="compra.imagen" height="50"></td>
-              <td>{{ compra.nombre }}</td>
-              <td>{{ compra.precio | currency }}</td>
-              <td><button class="btn btn-danger" (click)="eliminarDelCarrito(i)">X</button></td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <th class="text-end">Total:</th>
-              <th>Total: {{ totalPrecio | currency:'USD':'symbol' }}</th>
-              <th></th>
-            </tr>
-          </tfoot>
-        </table>
-        <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#Modalco">Realizar compra</button>
+        <ng-container *ngIf="compras.length > 0; else noCompras">
+          <table class="table table-borderless mb-3">
+            <thead class="border-bottom">
+              <tr class="text-muted">
+                <th>-</th>
+                <th>PRODUCTO</th>
+                <th>PRECIO</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let compra of compras; let i = index">
+                <td><img [src]="compra.imagen" height="50"></td>
+                <td>{{ compra.nombre }}</td>
+                <td>{{ compra.precio | currency }}</td>
+                <td><button class="btn btn-danger" (click)="eliminarDelCarrito(i)">X</button></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th class="text-end">Total:</th>
+                <th>Total: {{ totalPrecio | currency:'USD':'symbol' }}</th>
+                <th></th>
+              </tr>
+            </tfoot>
+          </table>
+          <p id="mensaje-descuento">¡Obtén un 20% de descuento por la compra de 3 productos!</p>
+          <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#Modalco">Realizar
+            compra</button>
+        </ng-container>
+        <ng-template #noCompras>
+          <p id="mensaje-no-productos">No hay productos en el carrito</p>
+        </ng-template>
       </div>
     </div>
   </div>
