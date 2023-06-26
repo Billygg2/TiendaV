@@ -1,6 +1,46 @@
-<app-header></app-header>
-<app-carrousel></app-carrousel>
+<app-header [(backgroundColor)]="myBackgroundColor"></app-header>
 <app-main></app-main>
 <app-comentarios></app-comentarios>
-<app-imagen></app-imagen>
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="page-header" style="text-decoration: underline; text-decoration-color: rgb(15, 139, 139);">Conocer el clima de otra Ciudad?</h2>
+      <br><br>
+    </div>
+  </div>
+</div>
+<div class="container p-4">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card card-body shadow-left-bottom">
+        <form (submit)="submitLocation(cityName, cityCode)">
+          <label for="id" class="form-label" style="color: #147EB1;">Ciudad *</label>
+          <input type="text" class="form-control" style="background-color: #D9D9D9;" autofocus #cityName>
+          <br>
+          <label for="id" class="form-label" style="color: #147EB1;">Codigo del País *</label>
+          <input type="text" class="form-control" style="background-color: #D9D9D9;" #cityCode>
+          <button class="btn btn-primary btn-block mt-2">
+            Obtener Clima
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div *ngIf="weather" class="card text-center">
+        <div class="card-body shadow-r-bottom">
+          <h1 class="h4 card-title">Información del Clima</h1>
+          <img [src]="'http://openweathermap.org/img/w/' + weather.weather[0].icon + '.png'" alt="Weather Icon" style="width: 50px;">
+          <p class="card-text">Ciudad: {{weather.name}}</p>
+          <p class="card-text">Latitud: {{weather.coord.lat}}</p>
+          <p class="card-text">Longitud: {{weather.coord.lon}}</p>
+          <p class="card-text">Humedad: {{weather.main.humidity}}</p>
+          <p class="card-text">Presión Atmosférica: {{weather.main.pressure}}</p>
+          <p class="card-text">Temperatura: {{weather.main.temp}} °C</p>
+          <p class="card-text">Descripción: {{weather.weather[0].description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <app-footer></app-footer>

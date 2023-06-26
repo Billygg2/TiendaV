@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, Input } from '@angular/core';
 
 interface Coment {
   id: number;
@@ -14,7 +14,31 @@ interface Coment {
   templateUrl: './comentarios.component.html',
   styleUrls: ['./comentarios.component.scss']
 })
-export class ComentariosComponent {
+export class ComentariosComponent implements OnInit, AfterViewInit, OnDestroy {
+
+  comentariosComponent = true;
+
+  ngOnInit() {
+    console.log('Componente inicializado');
+  }
+
+  ngAfterViewInit() {
+    console.log('Vista inicializada');
+  }
+
+  ngOnDestroy() {
+    console.log('Componente destruido');
+  }
+
+  handleDeleteClick(comentario: Coment) {
+    const index = this.comentarios.indexOf(comentario);
+    if (index !== -1) {
+      this.comentarios.splice(index, 1);
+      alert('Se ha borrado el comentario exitosamente');
+      console.log('Componente Eliminado')
+    }
+  }
+
   comentarios: Coment[] = [
     {
       id: 1,
@@ -65,10 +89,11 @@ export class ComentariosComponent {
       colorClass: null
     };
   }
-cambiarColorComentarios(color: string) {
-  // Iterar sobre cada comentario y cambiar su clase CSS
-  this.comentarios.forEach(comentario => {
-    comentario.colorClass = color;
-  });
-}
+
+  cambiarColorComentarios(color: string) {
+    // Iterar sobre cada comentario y cambiar su clase CSS
+    this.comentarios.forEach(comentario => {
+      comentario.colorClass = color;
+    });
+  }
 }

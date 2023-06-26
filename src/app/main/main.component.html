@@ -1,4 +1,60 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col">
+      <div class="carousel slide carousel-fade" id="mi-carousel" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="carousel-caption">
+              <h5 style="color: rgb(177, 115, 45);"><strong>Compra Nuestros Productos ya!!.</strong></h5>
+              <p>Nuestros productos son 100% sellados e importados.</p>
+            </div>
+            <img class="d-block w-100 h-auto" src="../assets/img/rob-hampson-cqFKhqv6Ong-unsplash.jpg" alt="">
+          </div>
+          <div class="carousel-item" data-bs-interval="5000">
+            <div class="carousel-caption">
+              <h5 style="color: rgb(177, 115, 45);"><strong>Ten la mejor experiencia con un nuevo celular de alta
+                  gama.</strong></h5>
+              <p>No dudes en comprar tu nuevo celular.</p>
+            </div>
+            <img class="d-block w-100 h-auto" src="../assets/img/rodion-kutsaiev-0VGG7cqTwCo-unsplash.jpg" alt="">
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-caption">
+              <h5 style="color: rgb(177, 115, 45);"><strong>Te ofrecemos descuentos.</strong></h5>
+              <p style="color: rgb(82, 62, 199);">Por la compra de 3 celulares te damos un descuento de 20%</p>
+            </div>
+            <img class="d-block w-100 h-auto" src="../assets/img/paul-hanaoka-HbyYFFokvm0-unsplash.jpg" alt=""
+              style="max-height: auto; width: auto;">
+          </div>
+        </div>
+
+        <!-- Controles -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#mi-carousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#mi-carousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Siguiente</span>
+        </button>
+
+        <!-- Indicadores -->
+        <div class="carousel-indicators">
+          <button type="button" class="active" data-bs-target="#mi-carousel" data-bs-slide-to="0"
+            aria-label="Slide 1"></button>
+          <button type="button" class="" data-bs-target="#mi-carousel" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+          <button type="button" class="" data-bs-target="#mi-carousel" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <br><br>
+
+<!-- Productos -->
 <div class="container">
   <div class="row">
     <div class="col-12">
@@ -72,8 +128,8 @@
     </button>
     <div class="dropdown-menu dropstart-menu-end" aria-labelledby="dropdownMenuButton">
       <div class="px-2 py-3">
-        <h2 class="fw-bold text-uppercase mb-3">Carrito de compras</h2>
-        <ng-container *ngIf="compras.length > 0; else noCompras">
+        <h2 class="fw-bold text-uppercase mb-3">{{ 'carrito de compras' | mayusculaTexto }}</h2>
+          <ng-container *ngIf="compras.length > 0; else noCompras">
           <table class="table table-borderless mb-3">
             <thead class="border-bottom">
               <tr class="text-muted">
@@ -104,7 +160,7 @@
             id="btnRealizarCompra">Realizar compra</button>
         </ng-container>
         <ng-template #noCompras>
-          <p id="mensaje-no-productos">No hay productos en el carrito</p>
+          <p id="mensaje-no-productos">{{ 'No hay ningun producto' | truncarTexto:20 }}</p>
         </ng-template>
       </div>
     </div>
@@ -126,44 +182,54 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <div class="col-md-4 mx-auto text-center">
-        <div class="card shadow-left-bottom">
-          <div class="card-body ">
-            <form (ngSubmit)="agregarProducto()">
-              <div class="mb-3">
-                <label for="id" class="form-label" style="color: #147EB1;">ID:*</label>
-                <input type="number" class="form-control" id="id" [(ngModel)]="nuevoProducto.id" name="id" required>
-              </div>
-              <div class="mb-3">
-                <label for="img" class="form-label" style="color: #147EB1;">Imagen URL:</label>
-                <input type="text" class="form-control" id="img" style="background-color: #D9D9D9;"
-                  [(ngModel)]="nuevoProducto.imagen" name="img" required>
-              </div>
-              <div class="mb-3">
-                <label for="nombre" class="form-label" style="color: #147EB1;">Nombre:*</label>
-                <input type="text" class="form-control" id="nombre" style="background-color: #D9D9D9;"
-                  [(ngModel)]="nuevoProducto.nombre" name="nombre" required>
-              </div>
-              <div class="mb-3">
-                <label for="descripcion" class="form-label" style="color: #147EB1;">Descripcion:</label>
-                <input type="text" class="form-control" id="descripcion" style="background-color: #D9D9D9;"
-                  [(ngModel)]="nuevoProducto.descripcion" name="descripcion" required>
-              </div>
-              <div class="mb-3">
-                <label for="precio" class="form-label" style="color: #147EB1;">Precio:*</label>
-                <input type="number" class="form-control" id="precio" style="background-color: #D9D9D9;"
-                  [(ngModel)]="nuevoProducto.precio" name="precio" required>
-              </div>
+    <div class="col-md-6">
+      <div class="card shadow-left-bottom">
+        <div class="card-body">
+          <form (ngSubmit)="agregarProducto()">
+            <div class="mb-3">
+              <label for="id" class="form-label" style="color: #147EB1;">ID:*</label>
+              <input type="number" class="form-control" id="id" [(ngModel)]="nuevoProducto.id" name="id" required>
+            </div>
+            <div class="mb-3">
+              <label for="img" class="form-label" style="color: #147EB1;">Imagen URL:</label>
+              <input type="text" class="form-control" id="img" style="background-color: #D9D9D9;"
+                [(ngModel)]="nuevoProducto.imagen" name="img" required>
+            </div>
+            <div class="mb-3">
+              <label for="nombre" class="form-label" style="color: #147EB1;">Nombre:*</label>
+              <input type="text" class="form-control" id="nombre" style="background-color: #D9D9D9;"
+                [(ngModel)]="nuevoProducto.nombre" name="nombre" required>
+            </div>
+            <div class="mb-3">
+              <label for="descripcion" class="form-label" style="color: #147EB1;">Descripcion:</label>
+              <input type="text" class="form-control" id="descripcion" style="background-color: #D9D9D9;"
+                [(ngModel)]="nuevoProducto.descripcion" name="descripcion" required>
+            </div>
+            <div class="mb-3">
+              <label for="precio" class="form-label" style="color: #147EB1;">Precio:*</label>
+              <input type="number" class="form-control" id="precio" style="background-color: #D9D9D9;"
+                [(ngModel)]="nuevoProducto.precio" name="precio" required>
+            </div>
 
-              <button type="submit" class="btn btn-danger">Agregar</button>
-            </form>
+            <button type="submit" class="btn btn-danger">Agregar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card shadow-left-bottom">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <h2 class="page-header text-center" style="text-decoration: underline; text-decoration-color: rgb(114, 15, 139);">Precarga de la Imagen</h2>
+              <br><br>
+            </div>
           </div>
+          <img [xd]="nuevoProducto.imagen" class="img-fluid">
         </div>
       </div>
     </div>
   </div>
 </div>
-
 
 <br><br>
