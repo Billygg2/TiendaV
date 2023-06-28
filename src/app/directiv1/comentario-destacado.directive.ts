@@ -1,4 +1,5 @@
-import { ChangeDetectorRef, Directive, ElementRef, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Directive, ElementRef, Input, OnChanges } from '@angular/core';
+
 interface Coment {
   id: number;
   nombre: string;
@@ -17,7 +18,7 @@ export class ComentarioDestacadoDirective implements OnChanges {
     this.comentario = { id: 0, nombre: '', texto: '', fecha: new Date(), colorClass: '' };
   }
 
-  ngOnChanges(_changes: SimpleChanges) {
+  ngOnChanges() {
     if (this.comentario.texto.includes('Excelente')) {
       this.comentario.colorClass = 'bg-warning';
     } else {
@@ -26,6 +27,5 @@ export class ComentarioDestacadoDirective implements OnChanges {
 
     this.elementRef.nativeElement.classList.add(this.comentario.colorClass);
     this.changeDetectorRef.detectChanges();
-
   }
 }

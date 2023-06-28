@@ -1,3 +1,5 @@
+<br id="inicio">
+
 <div class="container">
   <div class="row mt-5">
     <div class="col">
@@ -8,7 +10,7 @@
               <h5 style="color: rgb(177, 115, 45);"><strong>Compra Nuestros Productos ya!!.</strong></h5>
               <p>Nuestros productos son 100% sellados e importados.</p>
             </div>
-            <img class="d-block w-100 h-auto" src="../assets/img/rob-hampson-cqFKhqv6Ong-unsplash.jpg" alt="">
+            <img class="d-block w-100 h-auto" src="../assets/img/rob-hampson-cqFKhqv6Ong-unsplash.jpg" alt="carrusel1">
           </div>
           <div class="carousel-item" data-bs-interval="5000">
             <div class="carousel-caption">
@@ -16,14 +18,14 @@
                   gama.</strong></h5>
               <p>No dudes en comprar tu nuevo celular.</p>
             </div>
-            <img class="d-block w-100 h-auto" src="../assets/img/rodion-kutsaiev-0VGG7cqTwCo-unsplash.jpg" alt="">
+            <img class="d-block w-100 h-auto" src="../assets/img/rodion-kutsaiev-0VGG7cqTwCo-unsplash.jpg" alt="carrusel2">
           </div>
           <div class="carousel-item">
             <div class="carousel-caption">
               <h5 style="color: rgb(177, 115, 45);"><strong>Te ofrecemos descuentos.</strong></h5>
               <p style="color: rgb(82, 62, 199);">Por la compra de 3 celulares te damos un descuento de 20%</p>
             </div>
-            <img class="d-block w-100 h-auto" src="../assets/img/paul-hanaoka-HbyYFFokvm0-unsplash.jpg" alt=""
+            <img class="d-block w-100 h-auto" src="../assets/img/paul-hanaoka-HbyYFFokvm0-unsplash.jpg" alt="carrusel3"
               style="max-height: auto; width: auto;">
           </div>
         </div>
@@ -52,7 +54,7 @@
     </div>
   </div>
 </div>
-<br><br>
+<br id="home"><br>
 
 <!-- Productos -->
 <div class="container">
@@ -68,14 +70,16 @@
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <div class="col" *ngFor="let producto of productos">
       <div class="card h-100 border rounded-3 shadow-left-bottom">
-        <img class="img-fluid img-portfolio img-hover mb-3" src="{{producto.imagen}}" alt="{{producto.nombre}}">
+        <img class="img-fluid img-portfolio img-hover mb-3" src="{{producto.imagen}}"
+          alt="{{producto.nombre}} - imagen">
         <div class="card-body">
           <h5 class="card-title">{{producto.nombre}}</h5>
           <p class="card-text">{{producto.descripcion}}</p>
           <p class="card-text text-danger">${{producto.precio}}</p>
         </div>
         <div class="d-flex justify-content-center">
-          <a class="btn btn-primary" (click)="agregarAlCarrito(producto)">Agregar Al carrito</a>
+          <a class="btn btn-primary" (click)="agregarAlCarrito(producto)" (keyup.enter)="agregarAlCarrito(producto)"
+            tabindex="0">Agregar Al carrito</a>
         </div>
       </div>
     </div>
@@ -123,13 +127,13 @@
 <div class="position-fixed top-50 end-0 translate-middle bottom-0">
   <div class="dropstart">
     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
-      style="background-color: rgba(15, 139, 139, 0.438);" data-bs-toggle="dropdown" aria-expanded="false">
+      style="background-color: rgba(15, 139, 139, 0.438);" data-bs-toggle="dropdown" aria-expanded="false" tabindex="0">
       <i class="bi-cart-fill"></i>
     </button>
     <div class="dropdown-menu dropstart-menu-end" aria-labelledby="dropdownMenuButton">
       <div class="px-2 py-3">
         <h2 class="fw-bold text-uppercase mb-3">{{ 'carrito de compras' | mayusculaTexto }}</h2>
-          <ng-container *ngIf="compras.length > 0; else noCompras">
+        <ng-container *ngIf="compras.length > 0; else noCompras">
           <table class="table table-borderless mb-3">
             <thead class="border-bottom">
               <tr class="text-muted">
@@ -141,7 +145,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let compra of compras; let i = index">
-                <td><img [src]="compra.imagen" height="50"></td>
+                <td><img [src]="compra.imagen" height="50" alt="{{ compra.nombre }}"></td>
                 <td>{{ compra.nombre }}</td>
                 <td>{{ compra.precio | currency }}</td>
                 <td><button class="btn btn-danger" (click)="eliminarDelCarrito(i)">X</button></td>
@@ -221,11 +225,12 @@
         <div class="card-body">
           <div class="row">
             <div class="col-12">
-              <h2 class="page-header text-center" style="text-decoration: underline; text-decoration-color: rgb(114, 15, 139);">Precarga de la Imagen</h2>
+              <h2 class="page-header text-center"
+                style="text-decoration: underline; text-decoration-color: rgb(114, 15, 139);">Precarga de la Imagen</h2>
               <br><br>
             </div>
           </div>
-          <img [xd]="nuevoProducto.imagen" class="img-fluid">
+          <img [appImagenVer]="nuevoProducto.imagen" class="img-fluid" alt="Imagen del producto">
         </div>
       </div>
     </div>

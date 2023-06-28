@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Producto } from '../models/models.module';
-import { ProdcutoService } from '../servicio/prodcuto.service';
+import { ProductoService } from '../servicio/prodcuto.service';
 import { DataService } from '../servicio2/data.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { DataService } from '../servicio2/data.service';
 })
 export class MainComponent implements OnInit {
 
-  private _nuevoProductoAgregado: boolean = false;
+  private _nuevoProductoAgregado = false;
 
   @Input() set nuevoProductoAgregado(value: boolean) {
     this._nuevoProductoAgregado = value;
@@ -23,7 +23,7 @@ export class MainComponent implements OnInit {
     return this._nuevoProductoAgregado;
   }
 
-  constructor(private miServicio:ProdcutoService, private productosServicio:DataService){
+  constructor(private miServicio:ProductoService, private productosServicio:DataService){
   }
 
   ngOnInit(): void {
@@ -32,12 +32,12 @@ export class MainComponent implements OnInit {
 
   productos: Producto[] = []
 
-  nuevoProducto: any = {
-    id: null,
-    nombre: null,
-    precio: null,
+  nuevoProducto: Producto = {
+    id: 0,
+    nombre: '',
+    precio: 0,
     imagen: '',
-    descripcion: null
+    descripcion: ''
   };
 
   agregarProducto() {
@@ -45,26 +45,26 @@ export class MainComponent implements OnInit {
     this.miServicio.muestra("Nuevo producto agregado: " + this.nuevoProducto.nombre);
     this.nuevoProductoAgregado = true;
     this.nuevoProducto = {
-      id: null,
-      nombre: null,
-      precio: null,
+      id: 0,
+      nombre: '',
+      precio: 0,
       imagen: '',
-      descripcion: null
+      descripcion: ''
     };
-  };
+  }
 
-  compras: any[] = [];
-  totalPrecio: number = 0;
+  compras: Producto[] = [];
+  totalPrecio = 0;
 
-  agregarAlCarrito(producto: any) {
+  agregarAlCarrito(producto: Producto) {
     this.compras.push(producto);
     this.calcularTotalPrecio();
-  };
+  }
 
   eliminarDelCarrito(index: number) {
     this.compras.splice(index, 1);
     this.calcularTotalPrecio();
-  };
+  }
 
   calcularTotalPrecio() {
     let total = this.compras.reduce((total, compra) => total + compra.precio, 0);

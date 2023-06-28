@@ -10,7 +10,7 @@ export class HeaderComponent {
   @Output() backgroundColorChange = new EventEmitter<string>();
 
   constructor() {
-    this.backgroundColor = 'rgb(11, 30, 73);'; 
+    this.backgroundColor = 'rgb(11, 30, 73);';
   }
 
   onBackgroundColorChange(value: string) {

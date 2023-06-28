@@ -6,8 +6,6 @@ import { Producto } from '../models/models.module';
 })
 export class DataService {
 
-  constructor() { }
-
   productos: Producto[] = [
     {
       id: 1,

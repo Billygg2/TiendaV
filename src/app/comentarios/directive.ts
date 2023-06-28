@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges } from '@angular/core';
 
 @Directive({
   selector: '[appComentarioDestacado]'
@@ -7,7 +7,8 @@ export class ComentarioDestacadoDirective implements OnChanges {
   @Input('appComentarioDestacado') palabrasClave: string[] = [];
 
   constructor(private elementRef: ElementRef) {}
-  ngOnChanges(_changes: SimpleChanges) {
+
+  ngOnChanges() {
     const comentario = this.elementRef.nativeElement.textContent;
     const palabrasClaveEncontradas = this.palabrasClave.filter(palabra => comentario.includes(palabra));
     if (this.palabrasClave) {

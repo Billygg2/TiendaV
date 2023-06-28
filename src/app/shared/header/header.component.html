@@ -1,45 +1,77 @@
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(11, 30, 73);" [style.background-color]="backgroundColor">
+<nav class="navbar bg-body-dark fixed-to" style="background-color: rgb(11, 30, 73);"
+  [style.background-color]="backgroundColor">
   <div class="container-fluid">
-      <a class="navbar-brand" href="#"><img src="https://images.vexels.com/media/users/3/204690/isolated/preview/ccb652d1ca11908eeb950eb670c02619-telefono-celular-sonando-icono-azul.png" alt="logo" style="height: 50px; width: 80px "></a>
-  <input type="color" [(ngModel)]="backgroundColor" (change)="onBackgroundColorChange(backgroundColor)">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
-          aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarScroll">
-          <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-              <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link active" href="#">Nosotros</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#">Contactanos</a>
-            </li>
-              <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
-                      aria-expanded="false">
-                      Servicios
-                  </a>
-                  <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Garantias</a></li>
-                      <li><a class="dropdown-item" href="#">Arreglos</a></li>
-                      <li>
-                          <hr class="dropdown-divider">
-                      </li>
-                      <li><a class="dropdown-item" href="#">Confia en Nosotros</a></li>
-                  </ul>
-              </li>
-          </ul>
-          <ul class="navbar-nav ms-auto mb-3 mb-lg-0 d-flex flex-row">
-            <li class="nav-but">
-                <a class="btn btn-outline-light" href="#">Login</a>
-            </li>
-            <li class="nav-but">
-                <a class="btn btn-outline-light mx-2" href="#">SignUp</a>
-            </li>
+    <a class="navbar-brand"><img
+        src="https://images.vexels.com/media/users/3/204690/isolated/preview/ccb652d1ca11908eeb950eb670c02619-telefono-celular-sonando-icono-azul.png"
+        alt="logo" style="height: 50px; width: 80px "></a>
+    <input type="color" [(ngModel)]="backgroundColor" (change)="onBackgroundColorChange(backgroundColor)">
+    <button class="navbar-toggler" style="background-color: white;" type="button" data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end" style="background-color: rgb(11, 30, 73);"  id="offcanvasNavbar"
+      aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header d-flex align-items-center justify-content-between">
+        <a class="navbar-brand">
+          <img
+            src="https://images.vexels.com/media/users/3/204690/isolated/preview/ccb652d1ca11908eeb950eb670c02619-telefono-celular-sonando-icono-azul.png"
+            alt="logo" style="height: 50px; width: 80px ">
+        </a>
+        <button type="button" class="btn-close" style="background-color: white;" data-bs-dismiss="offcanvas"
+          aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body" ngbNav>
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3" style="--bs-scroll-height: 100px;">
+          <li class="nav-item" ngbNavItem>
+            <a class="nav-link active text-light"  href="#inicio" ngbNavLink>Inicio</a>
+          </li>
+          <li class="nav-item" ngbNavItem>
+            <a class="nav-link active text-light" href="#home" ngbNavLink>Productos</a>
+          </li>
+          <li class="nav-item" ngbNavItem>
+            <a class="nav-link active text-light" href="#comen" ngbNavLink>Comentarios</a>
+          </li>
+          <li class="nav-item" ngbNavItem>
+            <a class="nav-link active text-light" href="#contact3" ngbNavLink>Api del Clima</a>
+          </li>
+          <li class="nav-item d-flex justify-content-end mt-3">
+            <a class="btn btn-outline-light" href="#">Login</a>
+            <a class="btn btn-outline-light mx-2" href="#">Signup</a>
+          </li>
         </ul>
       </div>
+    </div>
   </div>
 </nav>
+
+
+
+
+<ng-template #homeContent>
+  <section id="home" class="container-fluid">
+  </section>
+</ng-template>
+
+<ng-template #homeContent2>
+  <section id="comen" class="container-fluid">
+  </section>
+</ng-template>
+
+<ng-template #homeContent3>
+  <section id="contact3" class="container-fluid">
+  </section>
+</ng-template>
+
+
+<div ngbNavContent>
+  <app-main>
+    <ng-container *ngTemplateOutlet="homeContent"></ng-container>
+  </app-main>
+  <app-comentarios>
+    <ng-container *ngTemplateOutlet="homeContent2"></ng-container>
+  </app-comentarios>
+  <app-climaapi>
+    <ng-container *ngTemplateOutlet="homeContent3"></ng-container>
+  </app-climaapi>
+
+</div>

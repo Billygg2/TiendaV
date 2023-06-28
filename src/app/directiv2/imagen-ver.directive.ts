@@ -1,12 +1,12 @@
-import { Directive, ElementRef, Input } from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges } from '@angular/core';
 
 @Directive({
-  selector: '[xd]'
+  selector: '[appImagenVer]'
 })
-export class ImagenVerDirective {
-  @Input('xd') appPreviewImage: string = '';
+export class ImagenVerDirective implements OnChanges {
+  @Input('appImagenVer') appPreviewImage = '';
 
-  constructor(private el: ElementRef) { }
+  constructor(private el: ElementRef) {}
 
   ngOnChanges() {
     if (this.appPreviewImage) {
